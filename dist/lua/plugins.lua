@@ -231,9 +231,11 @@ return require('packer').startup(function(use)
                         function(fallback)
                             if cmp.visible() then
                                 local snip = cmp.get_selected_entry()
-                                if not snip then
+                                if (snip) then
+                                    cmp.confirm()
+                                else
                                     cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
-                                cmp.confirm()
+                                    cmp.confirm()
                                 end
                             else
                                 fallback()
